@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Panel, Label } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import MyPanel from './MyPanel';
+import SingleSourceIcon from './SingleSourceIcon';
 
 class LeftPanels extends Component {
   render() {
+    const iconProps = {"iconName": "Test"};
     const panel1 = {
-      "panelTitle": "Source"
+      "panelTitle": "Source",
+      "content": [<SingleSourceIcon {...iconProps} />, <SingleSourceIcon {...iconProps} />]
     };
 
     const panel2 = {
-      "panelTitle": "Transform"
+      "panelTitle": "Transform",
+      "content": "Test",
     };
 
     const panel3 = {
-      "panelTitle": "Sink"
+      "panelTitle": "Sink",
+      "content": "Test",
     };
 
     return (
-      <Col md={2} id="left-panels-col">
+      <Col md={3} id="left-panels-col">
         <MyPanel {...panel1} />
         <MyPanel {...panel2} />
         <MyPanel {...panel3} />
