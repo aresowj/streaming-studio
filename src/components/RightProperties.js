@@ -6,7 +6,7 @@ import SingleProperty from './SingleProperty';
 class RightProperties extends Component {
   render() {
     const properties = [
-      <SingleProperty />, <SingleProperty />, <SingleProperty />,
+      <SingleProperty key={1} />, <SingleProperty key={2} />, <SingleProperty key={3} />,
     ]
     const propertiesComp = {
         "panelTitle": "Properties",
