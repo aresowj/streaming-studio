@@ -4,27 +4,29 @@ import MyPanel from './MyPanel';
 import SingleProperty from './SingleProperty';
 
 class RightProperties extends Component {
-  constructor(props) {
-    super(props);
-    this.setCurrentProperties = props.setCurrentProperties;
-    this.getCurrentProperties = props.getCurrentProperties;
-  }
+    render() {
+        var currentKey = 1;
+        var propertyComps = [];
 
-  render() {
-    const properties = [
-      <SingleProperty key={1} />, <SingleProperty key={2} />, <SingleProperty key={3} />,
-    ]
-    const propertiesComp = {
-        "panelTitle": "Properties",
-        "content": this.getCurrentProperties(),
-    };
+        for (var propertyName in this.props.properties) {
+            propertyComps.push(<SingleProperty key={currentKey}
+                                    propertyName={propertyName}
+                                    propertyValue={this.props.properties[propertyName]}
+                                />);
+            currentKey += 1;
+        }
 
-    return (
-      <Col md={3} id="right-properties-col">
-        <MyPanel id="properties-panel" {...propertiesComp} />
-      </Col>
-    );
-  }
+        const propertiesPanelProps = {
+            "panelTitle": "Properties",
+            "content": propertyComps,
+        };
+        
+        return (
+            <Col md={3} id="right-properties-col">
+                <MyPanel id="properties-panel" {...propertiesPanelProps} />
+            </Col>
+        );
+    }
 }
 
 export default RightProperties;

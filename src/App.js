@@ -5,41 +5,52 @@ import MidTabs from './components/MidTabs';
 import RightProperties from './components/RightProperties';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      "currentProperties": [],
+        this.state = {
+            "currentProperties": {},
+        }
+
+        this.setCurrentProperties = this.setCurrentProperties.bind(this);
     }
 
-    this.setCurrentProperties = this.setCurrentProperties.bind(this);
-    this.setCurrentProperties = this.getCurrentProperties.bind(this);
-  }
+    setCurrentProperties(properties) {
+        this.setState({"currentProperties": properties});
+    }
 
-  setCurrentProperties(properties) {
-    this.setState({"currentProperties": properties});
-  }
-  
-  getCurrentProperties() { return this.state.currentProperties; }
-
-  render() {
-    return (
-      <Grid>
-        <Row className="App">
-          <Row className="header">
-            <Col md={12}>
-            <PageHeader>Streaming Studio</PageHeader>
-            </Col>
-          </Row>
-          <Row>
-            <LeftPanels {...this.props} />
-            <MidTabs {...this.props} />
-            <RightProperties {...this.props} />
-          </Row>
-        </Row>
-      </Grid>
-    );
-  }
+    render() {
+        const properties = this.state.currentProperties;
+        
+        return (
+            <Grid>
+                <Row className="App">
+                <Row className="header">
+                    <Col md={12}>
+                        <PageHeader>Streaming Studio</PageHeader>
+                    </Col>
+                </Row>
+                <Row>
+                    <LeftPanels
+                        setCurrentProperties={this.setCurrentProperties}
+                        properties={properties}
+                        {...this.props}
+                    />
+                    <MidTabs 
+                        setCurrentProperties={this.setCurrentProperties}
+                        generateChildId={null}
+                        {...this.props}
+                    />
+                    <RightProperties
+                        setCurrentProperties={this.setCurrentProperties}
+                        properties={properties}
+                        {...this.props}
+                    />
+                </Row>
+                </Row>
+            </Grid>
+        );
+    }
 }
 
 export default App;

@@ -9,9 +9,31 @@ body {
 }
 
 .tab-icons {
+  text-align: center;
   margin: 10px 10px 10px 10px;
 }
 
 .custom-icon {
+  margin-right: 10px;
+}
+
+.tab-icons .custom-icon {
+  margin-right: 30px;
+  margin-bottom: 50px;
+}
+
+textarea {
   margin: 10px 10px 10px 10px;
+}
+
+#mid-tabs-component-pane-1 {
+  position: relative;
+}
+
+#svg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
