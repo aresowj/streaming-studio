@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Tab, Tabs } from 'react-bootstrap';
+import { Col, Tab, Tabs } from 'react-bootstrap';
 import SingleSourceIcon from './SingleSourceIcon';
 import SingleTransformIcon from './SingleTransformIcon';
 import SingleSinkIcon from './SingleSinkIcon';
@@ -27,7 +27,11 @@ class MidTabs extends Component {
     if (newProps.iconType === "source") {
         this.setState({ sources: this.state.sources.concat(<SingleSourceIcon {...newProps} />) });
     } else if (newProps.iconType === "transform") {
-        this.setState({ transforms: this.state.transforms.concat(<SingleTransformIcon {...newProps} />) });
+        if (this.state.transforms.length === 0) {
+            this.setState({ transforms: this.state.transforms.concat(<SingleTransformIcon {...newProps} />) });
+        } else if (this.state.transforms.length === 1 && newProps.transformType != this.state.transforms[0].transformType) {
+            this.setState({ transforms: this.state.transforms.concat(<SingleTransformIcon {...newProps} />) });
+        }
     } else if (newProps.iconType === "sink") {
         this.setState({ sinks: this.state.sinks.concat(<SingleSinkIcon {...newProps} />) });
     }
@@ -39,15 +43,17 @@ class MidTabs extends Component {
         <Tabs defaultActiveKey={1} id="mid-tabs-component" aria-labelledby="middle tabs">
             <Tab eventKey={1} title="Design" id="tab-design" aria-labelledby="tab design"
                 onDragOver={this.designTabDrapOver.bind(this)} onDrop={this.designTabDrop.bind(this)}>
-                <Col>
-                    {this.state.sources}
-                </Col>
-                <Col>
-                    {this.state.transforms}
-                </Col>
-                <Col>
-                    {this.state.sinks}
-                </Col>
+                <g>
+                    <Col md={12} className="tab-icons">
+                        {this.state.sources}
+                    </Col>
+                    <Col md={12} className="tab-icons">
+                        {this.state.transforms}
+                    </Col>
+                    <Col md={12} className="tab-icons">
+                        {this.state.sinks}
+                    </Col>
+                </g>
             </Tab>
             <Tab eventKey={2} title="Code" id="tab-code" aria-labelledby="tab code">
                 {this.state.code}

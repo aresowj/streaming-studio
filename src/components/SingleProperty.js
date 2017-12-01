@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { FormControl, Row, Col } from 'react-bootstrap';
 
 class SingleProperty extends Component {
+  constructor(props) {
+    super(props);
+    this.setCurrentProperties = props.setCurrentProperties;
+    this.getCurrentProperties = props.getCurrentProperties;
+  }
+  
   render() {
     return (
       <Row>

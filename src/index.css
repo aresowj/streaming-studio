@@ -7,3 +7,11 @@ body {
 .tab-pane {
   min-height: 300px;
 }
+
+.tab-icons {
+  margin: 10px 10px 10px 10px;
+}
+
+.custom-icon {
+  margin: 10px 10px 10px 10px;
+}

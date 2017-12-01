@@ -6,17 +6,29 @@ import SingleTransformIcon from './SingleTransformIcon';
 import SingleSinkIcon from './SingleSinkIcon';
 
 class LeftPanels extends Component {
+  constructor(props) {
+    super(props);
+    this.setCurrentProperties = props.setCurrentProperties;
+    this.getCurrentProperties = props.getCurrentProperties;
+  }
+
   render() {
     const sourceIcons = [{
       "iconType": "source",
       "iconName": "Source 1",
       "value": "table",
       "icon": "",
+      "properties": [],
+      setCurrentProperties: this.setCurrentProperties,
+      getCurrentProperties: this.getCurrentProperties,
     }, {
       "iconType": "source",
       "iconName": "Source 2",
       "value": "table",
       "icon": "",
+      "properties": [],
+      setCurrentProperties: this.setCurrentProperties,
+      getCurrentProperties: this.getCurrentProperties,
     }];
 
     const panel1 = {
@@ -27,13 +39,19 @@ class LeftPanels extends Component {
     const transformIcons = [{
       "iconType": "transform",
       "iconName": "Transform 1",
-      "value": "Join",
+      "transformType": "join",
       "icon": "",
+      "properties": [],
+      setCurrentProperties: this.setCurrentProperties,
+      getCurrentProperties: this.getCurrentProperties,
     }, {
       "iconType": "transform",
       "iconName": "Transform 2",
-      "value": "Filter",
+      "transformType": "filter",
       "icon": "",
+      "properties": ["Filter"],
+      setCurrentProperties: this.setCurrentProperties,
+      getCurrentProperties: this.getCurrentProperties,
     }];
 
     const panel2 = {
@@ -44,13 +62,19 @@ class LeftPanels extends Component {
     const sinkIcons = [{
       "iconType": "sink",
       "iconName": "Sink 1",
-      "value": "Join",
+      "sinkTarget": "PowerBI",
       "icon": "",
+      "properties": ["Target"],
+      setCurrentProperties: this.setCurrentProperties,
+      getCurrentProperties: this.getCurrentProperties,
     }, {
       "iconType": "sink",
       "iconName": "Sink 2",
-      "value": "Filter",
+      "sinkTarget": "Alert/Notification",
       "icon": "",
+      "properties": ["Target"],
+      setCurrentProperties: this.setCurrentProperties,
+      getCurrentProperties: this.getCurrentProperties,
     }];
 
     const panel3 = {
